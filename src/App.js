@@ -6,6 +6,7 @@ import { AdminTemplate } from './templates/AdminTemplate/AdminTemplate';
 import Admin from './pages/Admin';
 import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate';
 import Home from './pages/Home';
+import MovieDetail from './pages/MovieDetail';
 
 
 export default class App extends Component {
@@ -14,6 +15,7 @@ export default class App extends Component {
       <BrowserRouter>
         <Switch>
           <AdminTemplate exact path='/admin' component={Admin} />
+          <HomeTemplate exact path='/moviedetail/:maPhim' component={MovieDetail} />
           <HomeTemplate exact path='/' component={Home} />
         </Switch>
       </BrowserRouter>

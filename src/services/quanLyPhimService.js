@@ -3,8 +3,11 @@ import { domain, groupID } from '../settings/config';
 
 export class quanLyPhimService {
     layDanhSachPhim = () => {
+        
+    }
+    layThongTinPhim_LichChieu = (maPhim) => {
         return axios({
-            url:`${domain}/QuanLyPhim/LayDanhSachPhim?maNhom=${groupID}`,
+            url:`${domain}/QuanLyRap/LayThongTinLichChieuPhim?maPhim=${maPhim}`,
             method:'GET'
         })
     }
