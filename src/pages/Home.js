@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { qlPhimService } from '../services/quanLyPhimService';
+import { NavLink } from 'react-router-dom';
 
 export default function Home(props) {
     let [danhSachPhim,setDanhSachPhim] = useState([]);
@@ -20,7 +21,7 @@ export default function Home(props) {
                     <img className="card-img-top" src={phim.hinhAnh} style={{width:'100%',height:450}} alt={phim.hinhAnh} />
                     <div className="card-body">
                         <h4 className="card-title">{phim.tenPhim}</h4>
-                        <p className="card-text">Body</p>
+                        <NavLink className="btn btn-success" to={`/moviedetail/${phim.maPhim}`}>ĐẶT VÉ</NavLink>
                     </div>
                 </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { qlPhimService } from '../services/quanLyPhimService';
-
+import moment from 'moment'
+import { NavLink } from 'react-router-dom';
 export default function MovieDetail(props) {
 
 
@@ -25,18 +26,18 @@ export default function MovieDetail(props) {
             <div className="row">
 
                 <div className="col-6 mt-5">
-                    <img style={{ width: 200, height: 350 }} />
+                    <img src={thongTinPhim.hinhAnh} alt={thongTinPhim.hinhanh} style={{ width: 200, height: 350 }} />
                 </div>
                 <div className="col-6 mt-5">
                     <table className="table">
                         <thead>
                             <tr>
                                 <th>Tên Phim</th>
-                                <th>Lâu đài đẫm máu</th>
+                                <th>{thongTinPhim.tenPhim}</th>
                             </tr>
                             <tr>
                                 <th>Mô tả</th>
-                                <th>mô tả ....</th>
+                                <th>{thongTinPhim.moTa}</th>
                             </tr>
                         </thead>
 
@@ -74,11 +75,24 @@ export default function MovieDetail(props) {
                     <div className="tab-content col-8" id="v-pills-tabContent">
                     {thongTinPhim.heThongRapChieu?.map((heThongRap, index) => {
                             return <div 
+                            key={index}
                             className="tab-pane fade show" 
                             id={heThongRap.maHeThongRap} 
                             role="tabpanel" 
                             aria-labelledby="v-pills-home-tab">
-                                {heThongRap.tenHeThongRap}
+                                {/* {heThongRap.tenHeThongRap} */}
+                                {heThongRap.cumRapChieu?.map((cumRap,index)=>{
+                                    return <div key={index}>
+                                       <p className="display-4"> {cumRap.tenCumRap}
+                                       </p>
+                                       <div className="row">
+                                        {cumRap.lichChieuPhim?.slice(0,12).map((lichChieu,index)=>{
+                                            return <NavLink to={`/showtime/${lichChieu.maLichChieu}`} className="col-2" key={index}>{moment( lichChieu.ngayChieuGioChieu).format("hh:mm A")}</NavLink>
+                                        })}
+                                        </div>
+                                    </div>
+                                })}
+
                             </div>
 
                         })}
